@@ -1,126 +1,58 @@
-//import javax.swing.*;
-//import java.awt.event.ActionListener;
-
 import java.util.Scanner;
 
 public class JournalView{
 
-    /*private String EnteredSurname;
-    private String EnteredName;
-    private String EnteredBirthDate;
-    private String EnteredPhoneNumber;
-    private String EnteredAddress;*/
+    public void Start(){
+        System.out.println("Hi, enter first student: ");
+    }
 
-    public boolean Start(){
+    public void EnterNextStudent(){
+        System.out.println("Enter next student: ");
+    }
+
+    public int ChooseOption(){
+        int input;
         Scanner in = new Scanner(System.in);
         System.out.println("Choose please option: 0 - input data, 1 - see data");
-        boolean input = in.hasNext();
+        try{
+            input = in.nextInt();
+        }
+        catch(Exception e){
+            System.out.println("You entered wrong command! So you can just look at list of students.");
+            input = 1;
+        }
         return input;
     }
 
+
     public String getEnteredSurname() {
-        System.out.println("Enter Surname: ");
+        System.out.print("Enter Surname: ");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
     public String getEnteredName() {
-        System.out.println("Enter Name: ");
+        System.out.print("Enter Name: ");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
     public String getEnteredBirthDate() {
-        System.out.println("Enter BirthDate: ");
+        System.out.print("Enter BirthDate: ");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
     public String getEnteredPhoneNumber() {
-        System.out.println("Enter Phone Number: ");
+        System.out.print("Enter Phone Number: ");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
     public String getEnteredAddress() {
-        System.out.println("Enter Address: ");
+        System.out.print("Enter Address: ");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
 }
-
-
-
-/*public class JournalView extends JFrame {
-
-    private JTextField firstNumber  = new JTextField(10);
-    private JLabel additionLabel = new JLabel("+");
-    private JTextField secondNumber = new JTextField(10);
-    private JButton calculateButton = new JButton("Calculate");
-    private JTextField calcSolution = new JTextField(10);
-
-    JournalView(){
-
-        // Sets up the view and adds the components
-
-        JPanel calcPanel = new JPanel();
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600, 200);
-
-        calcPanel.add(firstNumber);
-        calcPanel.add(additionLabel);
-        calcPanel.add(secondNumber);
-        calcPanel.add(calculateButton);
-        calcPanel.add(calcSolution);
-
-        this.add(calcPanel);
-
-        // End of setting up the components --------
-
-    }
-
-    public int getFirstNumber(){
-
-        return Integer.parseInt(firstNumber.getText());
-
-    }
-
-    public int getSecondNumber(){
-
-        return Integer.parseInt(secondNumber.getText());
-
-    }
-
-    public int getCalcSolution(){
-
-        return Integer.parseInt(calcSolution.getText());
-
-    }
-
-    public void setCalcSolution(int solution){
-
-        calcSolution.setText(Integer.toString(solution));
-
-    }
-
-    // If the calculateButton is clicked execute a method
-    // in the Controller named actionPerformed
-
-    void addCalculateListener(ActionListener listenForCalcButton){
-
-        calculateButton.addActionListener(listenForCalcButton);
-
-    }
-
-    // Open a popup that contains the error message passed
-
-    void displayErrorMessage(String errorMessage){
-
-        JOptionPane.showMessageDialog(this, errorMessage);
-
-    }
-
-}
-*/

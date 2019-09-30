@@ -2,43 +2,42 @@ public class JournalController {
 
     private JournalView theView;
     private JournalModel theModel;
+    private boolean flag = false;
+    private String EnteredSurname;
+    private String EnteredName;
+    private String EnteredBirthDate;
+    private String EnteredPhoneNumber;
+    private String EnteredAddress;
 
     public JournalController(JournalView theView, JournalModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
 
         this.Entering();
-
-    }
-
-    public void Show(JournalModel model){
-        System.out.println("There is your student: \n");
-        System.out.println("Surname: \n" + model.getSurname());
-        System.out.println("Name: \n" + model.getName());
-        System.out.println("Birth Date: \n" + model.getBirthDate());
-        System.out.println("Phone number: \n" + model.getPhoneNumber());
-        System.out.println("Address: \n" + model.getAddress());
-
     }
 
     public void Entering() {
 
-        JournalModel first = new JournalModel();
-        first.setSurname("");
-        first.setName("");
-        first.setBirthDate("");
-        first.setPhoneNumber("");
-        first.setAddress("");
+        theView.Start();
 
-        if(theView.Start() == false){ Show(first); }
-        else {
-            first.setSurname(theView.getEnteredSurname());
-            first.setName(theView.getEnteredName());
-            first.setBirthDate(theView.getEnteredBirthDate());
-            first.setPhoneNumber(theView.getEnteredPhoneNumber());
-            first.setAddress(theView.getEnteredAddress());
+        while(flag == false){
+
+            EnteredSurname = theView.getEnteredSurname();
+            EnteredName = theView.getEnteredName();
+            EnteredBirthDate = theView.getEnteredBirthDate();
+            EnteredPhoneNumber = theView.getEnteredPhoneNumber();
+            EnteredAddress = theView.getEnteredAddress();
+
+            theModel.Students.add(new JournalModel.Student(EnteredSurname, EnteredName, EnteredBirthDate, EnteredPhoneNumber, EnteredAddress));
+            if(theView.ChooseOption() == 0){
+                theView.EnterNextStudent();
+            }
+            else{
+                flag = true;
+                theModel.ShowStudents();
+            }
         }
-
-        Show(first);
     }
+
+
 }

@@ -3,6 +3,5 @@ public class Main {
         JournalView theView = new JournalView();
         JournalModel theModel = new JournalModel();
         JournalController theController = new JournalController(theView, theModel);
-
     }
 }
