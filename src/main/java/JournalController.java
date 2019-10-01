@@ -1,3 +1,5 @@
+import java.util.regex.Matcher;
+
 public class JournalController {
 
     private JournalView theView;
@@ -8,6 +10,7 @@ public class JournalController {
     private String EnteredBirthDate;
     private String EnteredPhoneNumber;
     private String EnteredAddress;
+    String temp;
 
     public JournalController(JournalView theView, JournalModel theModel) {
         this.theView = theView;
@@ -18,19 +21,38 @@ public class JournalController {
 
     public void Entering() {
 
-        theView.Start();
+        theView.StartMes();
 
         while(flag == false){
 
             EnteredSurname = theView.getEnteredSurname();
             EnteredName = theView.getEnteredName();
-            EnteredBirthDate = theView.getEnteredBirthDate();
-            EnteredPhoneNumber = theView.getEnteredPhoneNumber();
+
+
+            temp = theView.getEnteredBirthDate();
+            Matcher matcher = theView.BirthDatePattern.matcher(temp);
+            if (matcher.matches()) {
+                EnteredBirthDate = temp;
+            } else {
+                theView.WrongInputMes();
+                theView.getEnteredBirthDate();
+            }
+
+            temp = theView.getEnteredPhoneNumber();
+            Matcher matcher1 = theView.NumberPattern.matcher(temp);
+            if (matcher1.matches()) {
+                EnteredPhoneNumber = temp;
+            } else {
+                theView.WrongInputMes();
+                theView.getEnteredPhoneNumber();
+            }
+
+
             EnteredAddress = theView.getEnteredAddress();
 
             theModel.Students.add(new JournalModel.Student(EnteredSurname, EnteredName, EnteredBirthDate, EnteredPhoneNumber, EnteredAddress));
-            if(theView.ChooseOption() == 0){
-                theView.EnterNextStudent();
+            if(theView.ChooseOptionMes() == 0){
+                theView.EnterNextStudentMes();
             }
             else{
                 flag = true;
@@ -38,6 +60,4 @@ public class JournalController {
             }
         }
     }
-
-
 }
