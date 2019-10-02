@@ -5,7 +5,7 @@ public class JournalView{
 
 
     Pattern NumberPattern = Pattern.compile("(\\+380|380|0)\\d{9}");
-    Pattern BirthDatePattern = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
+    Pattern BirthDatePattern = Pattern.compile("^\\d{1,2}\\.\\d{1,2}\\.\\d{4}");
 
     public void StartMes(){
         System.out.println("Hi, enter first student: ");
@@ -18,13 +18,13 @@ public class JournalView{
     public int ChooseOptionMes(){
         int input;
         Scanner in = new Scanner(System.in);
-        System.out.println("Choose please option: 0 - input data, 1 - see data");
+        System.out.println("Choose please option: 0 - input data, 1 - see data, 2 - exit");
         try{
             input = in.nextInt();
         }
         catch(Exception e){
-            System.out.println("You entered wrong command! So you can just look at list of students.");
-            input = 1;
+            System.out.println("You entered wrong command! Try again");
+            input = -1;
         }
         return input;
     }

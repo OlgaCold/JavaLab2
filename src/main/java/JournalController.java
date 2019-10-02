@@ -24,52 +24,47 @@ public class JournalController {
         theView.StartMes();
 
         while(flag == false){
-
-            EnteredSurname = theView.getEnteredSurname();
-            EnteredName = theView.getEnteredName();
-
-
-            temp = theView.getEnteredBirthDate();
-            Matcher matcher = theView.BirthDatePattern.matcher(temp);
-            while(!(matcher.matches())){
-                theView.WrongInputMes();
-                temp = theView.getEnteredBirthDate();
-                matcher = theView.BirthDatePattern.matcher(temp);
-            }
-            EnteredBirthDate = temp;
-            /*if (matcher.matches()) {
-                EnteredBirthDate = temp;
-            } else {
-                theView.WrongInputMes();
-                theView.getEnteredBirthDate();
-            }*/
-
-            temp = theView.getEnteredPhoneNumber();
-            Matcher matcher1 = theView.NumberPattern.matcher(temp);
-            while(!(matcher1.matches())){
-                theView.WrongInputMes();
-                temp = theView.getEnteredPhoneNumber();
-                matcher1 = theView.NumberPattern.matcher(temp);
-            }
-            EnteredPhoneNumber = temp;
-            /*if (matcher1.matches()) {
-                EnteredPhoneNumber = temp;
-            } else {
-                theView.WrongInputMes();
-                theView.getEnteredPhoneNumber();
-            }*/
-
-
-            EnteredAddress = theView.getEnteredAddress();
-
-            theModel.Students.add(new JournalModel.Student(EnteredSurname, EnteredName, EnteredBirthDate, EnteredPhoneNumber, EnteredAddress));
-            if(theView.ChooseOptionMes() == 0){
+            switch (theView.ChooseOptionMes()){
+                case 0:
                 theView.EnterNextStudentMes();
+                EnteredSurname = theView.getEnteredSurname();
+                EnteredName = theView.getEnteredName();
+
+
+                temp = theView.getEnteredBirthDate();
+                Matcher matcher = theView.BirthDatePattern.matcher(temp);
+                while(!(matcher.matches())){
+                    theView.WrongInputMes();
+                    temp = theView.getEnteredBirthDate();
+                    matcher = theView.BirthDatePattern.matcher(temp);
+                }
+                EnteredBirthDate = temp;
+
+                temp = theView.getEnteredPhoneNumber();
+                Matcher matcher1 = theView.NumberPattern.matcher(temp);
+                while(!(matcher1.matches())){
+                    theView.WrongInputMes();
+                    temp = theView.getEnteredPhoneNumber();
+                    matcher1 = theView.NumberPattern.matcher(temp);
+                }
+                EnteredPhoneNumber = temp;
+
+                EnteredAddress = theView.getEnteredAddress();
+
+                theModel.Students.add(new JournalModel.Student(EnteredSurname, EnteredName, EnteredBirthDate, EnteredPhoneNumber, EnteredAddress));
+                break;
+
+                case 1:
+                    theModel.ShowStudents();
+                    break;
+
+                case 2:
+                    flag = true;
+                    break;
+                case -1:
+                    break;
             }
-            else{
-                flag = true;
-                theModel.ShowStudents();
-            }
+
         }
     }
 }
