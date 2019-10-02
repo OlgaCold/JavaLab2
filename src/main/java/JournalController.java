@@ -31,21 +31,33 @@ public class JournalController {
 
             temp = theView.getEnteredBirthDate();
             Matcher matcher = theView.BirthDatePattern.matcher(temp);
-            if (matcher.matches()) {
+            while(!(matcher.matches())){
+                theView.WrongInputMes();
+                temp = theView.getEnteredBirthDate();
+                matcher = theView.BirthDatePattern.matcher(temp);
+            }
+            EnteredBirthDate = temp;
+            /*if (matcher.matches()) {
                 EnteredBirthDate = temp;
             } else {
                 theView.WrongInputMes();
                 theView.getEnteredBirthDate();
-            }
+            }*/
 
             temp = theView.getEnteredPhoneNumber();
             Matcher matcher1 = theView.NumberPattern.matcher(temp);
-            if (matcher1.matches()) {
+            while(!(matcher1.matches())){
+                theView.WrongInputMes();
+                temp = theView.getEnteredPhoneNumber();
+                matcher1 = theView.NumberPattern.matcher(temp);
+            }
+            EnteredPhoneNumber = temp;
+            /*if (matcher1.matches()) {
                 EnteredPhoneNumber = temp;
             } else {
                 theView.WrongInputMes();
                 theView.getEnteredPhoneNumber();
-            }
+            }*/
 
 
             EnteredAddress = theView.getEnteredAddress();
